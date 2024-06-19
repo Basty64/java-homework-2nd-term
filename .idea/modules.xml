@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/gradle.main.iml" filepath="$PROJECT_DIR$/.idea/modules/gradle.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/homework/homework2/maven/homework2.iml" filepath="$PROJECT_DIR$/src/main/homework/homework2/maven/homework2.iml" />
       <module fileurl="file://$PROJECT_DIR$/java-homework.iml" filepath="$PROJECT_DIR$/java-homework.iml" />
     </modules>
   </component>
