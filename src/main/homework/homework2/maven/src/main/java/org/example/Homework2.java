@@ -5,6 +5,8 @@ import org.springframework.stereotype.Component;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Component
 public class Homework2 {
@@ -29,6 +31,7 @@ public class Homework2 {
                     System.out.println("----------------------------------------");
                     System.out.println("delete - введите артикула продукта, который нужно удалить");
                     System.out.println("----------------------------------------");
+
                 } else if (command.startsWith("create")) {
 
                     String[] tokens = command.split(" ");
@@ -79,12 +82,21 @@ public class Homework2 {
 
 
     private static void createProduct(String article, String name, double price, int quantity) {
-        if (!database.containsKey(article)) {
-            Product product = new Product(article, name, price, quantity);
-            database.put(article, product);
-            System.out.println("Товар успешно добавлен");
+
+        Pattern pattern = Pattern.compile("[^A-Z0-9]");
+
+        Matcher matcher = pattern.matcher(article);
+
+        if (matcher.find()) {
+            System.out.println("Строка содержит недопустимые символы");
         } else {
-            System.out.println("Товар с таким артикулом уже существует");
+            if (!database.containsKey(article)) {
+                Product product = new Product(article, name, price, quantity);
+                database.put(article, product);
+                System.out.println("Товар успешно добавлен");
+            } else {
+                System.out.println("Товар с таким артикулом уже существует");
+            }
         }
     }
 
@@ -129,9 +141,7 @@ class Product {
         this.quantity = quantity;
     }
 
-    public String getArticle() {
-        return article;
-    }
+    public String getArticle() {return article;}
     public String getName() {
         return name;
     }
