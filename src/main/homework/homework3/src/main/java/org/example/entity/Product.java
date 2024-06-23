@@ -1,4 +1,4 @@
-package org.example.entities;
+package org.example.entity;
 
 public class Product {
     private String article;

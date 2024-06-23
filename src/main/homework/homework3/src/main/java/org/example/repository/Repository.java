@@ -1,13 +1,14 @@
 package org.example.repository;
 
 
-import org.example.entities.Product;
+import org.example.entity.Product;
 
-import java.util.List;
+import java.util.Map;
+
 @org.springframework.stereotype.Repository
 public interface Repository  {
-    void addProduct(Product product);
-    List<Product> getAllProducts();
+void saveProduct(Product product);
+    Map<String, Product> showAll();
     void updateProduct(String article, Product product);
     void deleteProduct(String article);
 }
