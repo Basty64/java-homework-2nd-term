@@ -1,3 +1,4 @@
 service:
   target: ROM
+  port: 8000
 #  Для

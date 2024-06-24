@@ -15,8 +15,10 @@ public class InMemoryStorage implements Repository{
     }
 
     @Override
-    public Map<String, Product> showAll() {
-        return products;
+    public void showAll() {
+        for (Map.Entry<String, Product> entry : products.entrySet()) {
+            System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
+        }
     }
 
     @Override
@@ -28,6 +30,4 @@ public class InMemoryStorage implements Repository{
     public void deleteProduct(String article) {
 
     }
-
-
 }

@@ -1,8 +1,12 @@
 package org.example.repository.ssdSave;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.entity.Product;
 import org.example.repository.Repository;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 public class DataStorage implements Repository {
@@ -11,13 +15,10 @@ public class DataStorage implements Repository {
     private File databaseFile;
     private ObjectMapper objectMapper = new ObjectMapper();
 
-    public FileDatabase(String filePath) {
-        this.databaseFile = new File(filePath);
-    }
 
 
     @Override
-    public void saveProduct(Product product) {
+    public void saveProduct(Product product) throws IOException {
 
 
         HashMap<String, Product> products = objectMapper.readValue(databaseFile, HashMap.class);
@@ -29,8 +30,13 @@ public class DataStorage implements Repository {
     }
 
     @Override
-    public Map<String, Product> showAll() {
-        return products;
+    public void showAll() throws IOException {
+
+        HashMap<String, Product> products = objectMapper.readValue(databaseFile, HashMap.class);
+        for (Map.Entry<String, Product> entry : products.entrySet()) {
+            System.out.println("||" + entry.getKey() + "||" + entry.getValue() + "||");
+        }
+
     }
 
     @Override
@@ -43,4 +49,10 @@ public class DataStorage implements Repository {
 
     }
 
+    public DataStorage(String filePath) {
+        this.databaseFile = new File(filePath);
+    }
+
 }
+
+

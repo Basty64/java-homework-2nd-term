@@ -12,17 +12,19 @@ public class Service {
     @Value("${service.target}")
     private String target;
 
+
     public void addProduct(Product product) {
         if (target.equals("ROM")){
 //            service.saveToRom(product);
         }
-        var a = product.getArticle();
-        var n = product.getName();
-        var p = product.getPrice();
-        var q = product.getQuantity();
     }
 
     public Map<String, Product> getAllProducts() {
+        if (target.equals("ROM")){
+//           service.saveToRom(product);
+        }else if (target.equals("SSD")){
+
+        }
         return null;
     }
 
